@@ -1,4 +1,8 @@
 package data_structures.list;
+
+import self_exception.ElemNotFoundException;
+import self_exception.OutOfIndexException;
+
 /**
  * 可扩容的线性表
  * @author 张国荣
@@ -122,6 +126,15 @@ public class ListStruct {
 	}
 	
 	/**
+	 * 索引元素赋值
+	 * @param index
+	 * @param obj
+	 */
+	public void setElem(int index,Object obj){
+		this.list[index] = obj;
+	}
+	
+	/**
 	 * 查找与某元素相同的位置
 	 * @param obj
 	 * @return
@@ -159,8 +172,8 @@ public class ListStruct {
 	public void listInsert(Object obj,int index){
 		if(index>this.size){
 			try {
-				throw new outofIndexException("索引越界");
-			} catch (outofIndexException e) {
+				throw new OutOfIndexException();
+			} catch (OutOfIndexException e) {
 				e.printStackTrace();
 			}
 		}else{			
@@ -174,36 +187,14 @@ public class ListStruct {
 	}
 	
 	/**
-	 * 自定义索引越界异常内部类
-	 * @author 张国荣
-	 *
-	 */
-	class outofIndexException extends Exception{
-		public outofIndexException(String message){
-			super(message);
-		}
-	}
-	
-	/**
-	 * 自定义元素未找到异常内部类
-	 * @author 张国荣
-	 *
-	 */
-	class notFoundException extends Exception{
-		public notFoundException(String message){
-			super(message);
-		}
-	}
-	
-	/**
 	 * 数组索引删除
 	 * @param index
 	 */
 	public void listIndexDelete(int index){
 		if(index>this.index-1){
 			try {
-				throw new outofIndexException("索引越界");
-			} catch (outofIndexException e) {
+				throw new OutOfIndexException();
+			} catch (OutOfIndexException e) {
 				e.printStackTrace();
 			}
 		}else{
@@ -230,8 +221,8 @@ public class ListStruct {
 		}
 		if(notfound){
 			try {
-				throw new notFoundException("未找到该元素");
-			} catch (notFoundException e) {
+				throw new ElemNotFoundException();
+			} catch (ElemNotFoundException e) {
 				e.printStackTrace();
 			}
 		}else{
